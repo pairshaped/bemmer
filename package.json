@@ -1,0 +1,16 @@
+{
+  "name": "react-bem-mixin",
+  "version": "0.0.1",
+  "description": "BEM Mixin for React (Or Whatever)",
+  "main": "dist/bemifier.js",
+  "dependencies": {},
+  "devDependencies": {
+    "coffee-script": "~1.9.3"
+  },
+  "scripts": {
+    "test": "coffee -r ./index.litcoffee test.coffee",
+    "build": "coffee -p -c index.litcoffee > ./dist/bemifier.js"
+  },
+  "author": "Pair Shaped Inc.",
+  "license": "BSD-2-Clause"
+}
