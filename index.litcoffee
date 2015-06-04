@@ -1,6 +1,7 @@
 # Bemifier
 
-Class utility to turn your insanely long bem class names into something a little more managable.
+Class utility to turn your insanely long bem class names into something a
+little more managable.
 
 This is stupid simple, so don't over-complicate it!
 
@@ -18,15 +19,12 @@ I like to use it in React and Coffee!
 
 > MyComponent = React.createFactory React.createClass
 >   displayName: 'MyComponent'
->
 >   bem: new Bemifier()
->
 >   render: ->
 >     myClasses = @bem
 >       block: 'my-component'
 >       modifiers:
 >         active: @props.active
->
 >     div classNames: myClasses,
 >       @props.children
 
@@ -58,7 +56,6 @@ but that's not really that important right now.
           blockElement: '__'
           elementModifier: '--'
           nameSpacing: '-'
-        console.log @classNames, @bemParse
 
 There is no magic or behind the scenes illusion here.  You may
 specify non-default spacing if you desire, but the defaults are
@@ -73,17 +70,19 @@ the BEM standard.
 ## Use it
 
       classNames: ->
+        console.log @parse
         args = Array.prototype.slice.call(arguments)
-        classNames = []
+        classes = []
         if args[0] instanceof Array
-          classNames = args[0]
+          classes = args[0]
           args = args.slice(1)
         else if args[0] instanceof String
-          classNames.push args[0]
+          classes.push args[0]
           args = args.slice(1)
 
-        console.log 'classNames', args, @parse
-        classNames.concat(args.map(@parse)).join(' ')
+        bemClasses = args.map (arg) => @parse(arg)
+
+        classes.concat(bemClasses).join(' ')
 
 Just pass in a series of BEM-like javascript objects.
 Those objects should look something like this:
@@ -148,24 +147,24 @@ then decide whether to include 'modifier'.
         modifier if value
 
 ### Deal with a Bem Object -----------------------
-      parse: (bem) ->
-        block = @bemName(bem.block)
+      parse: (bemObject) ->
+        block = @bemName(bemObject.block)
         element = @bemName(bem.element)
-        modifiers = bem.modifiers || {}
+        modifiers = bemObject.modifiers || {}
         modifierKeys = Object.keys(modifiers)
 
         blockElement = @_compact([block, element]).join(@prefixes.element)
 
         return blockElement unless modifierKeys.length > 0
 
-        classNames = modifierKeys.map((modifierKey) ->
+        classes = modifierKeys.map((modifierKey) ->
           modifier = modifiers[modifierKey]
           m = @bemModifier(modifierKey, modifier)
           @_compact([blockElement, m]).join(@prefixes.modifier)
         )
 
-        classNames.unshift blockElement
-        classNames.join ' '
+        classes.unshift blockElement
+        classes.join ' '
 
 ## Export it
 
