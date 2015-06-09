@@ -5,43 +5,14 @@ little more managable.
 
 This is stupid simple, so don't over-complicate it!
 
-> var bem = new Bemifier()
-> bem.classNames
->   block: 'my-block'
->   element: 'my-element'
-
-> "my-block__my-element"
-
-
-I like to use it in React and Coffee!
-
-{div} = React.DOM
-
-> MyComponent = React.createFactory React.createClass
->   displayName: 'MyComponent'
->   bem: new Bemifier()
->   render: ->
->     myClasses = @bem
->       block: 'my-component'
->       modifiers:
->         active: @props.active
->     div classNames: myClasses,
->       @props.children
-
-# Including in your project
-
-> $ npm build
-> $ cp ./build/bemifier.js /path/to/your/project/javascripts/
-
 # The Code
 
-
-    class Bemifier
+    class Bemmer
 
 \_compact will back onto lodash/underscore's compact methods when available,
 but that's not really that important right now.
 
-      _compact: (arr) ->
+      @_compact: (arr) ->
         _.compact(arr) if _ && _.compact
 
         newArray = []
@@ -51,8 +22,12 @@ but that's not really that important right now.
 
 ## Create a new Bemifier
 
-      constructor: (@prefixes = {}) ->
-        @prefixes ||=
+      constructor: (@bemHash) ->
+        unless @bemObject.block
+          throw new Error(
+            "Bemifier requires a block to create a class"
+          )
+        @prefixes =
           blockElement: '__'
           elementModifier: '--'
           nameSpacing: '-'
@@ -69,20 +44,29 @@ the BEM standard.
 
 ## Use it
 
-      classNames: ->
-        console.log @parse
-        args = Array.prototype.slice.call(arguments)
-        classes = []
-        if args[0] instanceof Array
-          classes = args[0]
-          args = args.slice(1)
-        else if args[0] instanceof String
-          classes.push args[0]
-          args = args.slice(1)
+### Get the class names from the bem object
+This just calls our static methods, while keeping everything
+nicely wrapped in the class.
 
-        bemClasses = args.map (arg) => @parse(arg)
+      classes: ->
+        Bemmer.className(@bemObject)
 
-        classes.concat(bemClasses).join(' ')
+### New Bemmer instance from the current
+This allows you to create a new Bemmer instance that extends your current Bemmer
+object, meaning the block itself persists.  Pass in a new element, modifiers, or
+cls (other class names):
+
+      elementFromBlock: (bemObject) ->
+        object = bemObject
+        bemObject.block = @bemObject.block
+        new Bemmer(bemObject)
+
+`with` is shorthand for using `elementFromBlock()` and `className()` and should
+be used in cases where the bem block/element/modifiers are one-time use.
+
+      with: (bemObject) ->
+        @elementFromBlock(bemObject)
+          .className()
 
 Just pass in a series of BEM-like javascript objects.
 Those objects should look something like this:
@@ -132,7 +116,7 @@ Add some custom css classes as the first parameter:
 
 You probably don't care about these methods...
 
-      bemName: (name) ->
+      @bemName: (name) ->
         if name instanceof Array
           name.join @prefixes.nameSpacing
         else
@@ -143,27 +127,37 @@ You probably don't care about these methods...
 If the value is truthy ("active", true),
 then decide whether to include 'modifier'.
 
-      bemModifier: (modifier, value) ->
-        modifier if value
+If the value is non-truthy (string, number),
+then append the modifier with the value:
+bemModifier("test", "yes") == "test-yes"
+
+      @bemModifier: (modifier, value) ->
+        if !!value == value
+          modifier if value
+        else
+          @bemName [modifier, value]
+
+      @mapModifiers: (modifiers) ->
+        modifiers = bemObject.modifiers || {}
+        classes = []
+        for key, value of modifiers
+          m = @bemMOdifier(key, value)
+          classes.push @_compact([blockElement, m]).join(@prefixes.modifier)
+        classes
+          modifier = modifiers[modifierKey]
+          m = @bemModifier(modifierKey, modifier)
 
 ### Deal with a Bem Object -----------------------
-      parse: (bemObject) ->
-        block = @bemName(bemObject.block)
-        element = @bemName(bem.element)
-        modifiers = bemObject.modifiers || {}
-        modifierKeys = Object.keys(modifiers)
+      @className: (bemObject) ->
+        block = Bemmer.bemName(bemObject.block)
+        element = Bemmer.bemName(bem.element)
 
         blockElement = @_compact([block, element]).join(@prefixes.element)
 
         return blockElement unless modifierKeys.length > 0
 
-        classes = modifierKeys.map((modifierKey) ->
-          modifier = modifiers[modifierKey]
-          m = @bemModifier(modifierKey, modifier)
-          @_compact([blockElement, m]).join(@prefixes.modifier)
-        )
-
         classes.unshift blockElement
+        classes.push bemObject
         classes.join ' '
 
 ## Export it
