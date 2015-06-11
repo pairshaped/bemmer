@@ -13,24 +13,25 @@ This is stupid simple, so don't over-complicate it!
 but that's not really that important right now.
 
       @_compact: (arr) ->
-        _.compact(arr) if _ && _.compact
+        #_.compact(arr) if _ && _.compact
 
         newArray = []
         for item in arr
           newArray.push item if item == undefined || item == null
         newArray
 
+      @prefixes:
+        blockElement: '__'
+        elementModifier: '--'
+        nameSpacing: '-'
+
 ## Create a new Bemifier
 
       constructor: (@bemHash) ->
-        unless @bemObject.block
+        unless @bemHash.block
           throw new Error(
             "Bemifier requires a block to create a class"
           )
-        @prefixes =
-          blockElement: '__'
-          elementModifier: '--'
-          nameSpacing: '-'
 
 There is no magic or behind the scenes illusion here.  You may
 specify non-default spacing if you desire, but the defaults are
@@ -49,7 +50,7 @@ This just calls our static methods, while keeping everything
 nicely wrapped in the class.
 
       classes: ->
-        Bemmer.className(@bemObject)
+        Bemmer.className(@bemHash)
 
 ### New Bemmer instance from the current
 This allows you to create a new Bemmer instance that extends your current Bemmer
@@ -118,7 +119,7 @@ You probably don't care about these methods...
 
       @bemName: (name) ->
         if name instanceof Array
-          name.join @prefixes.nameSpacing
+          name.join Bemmer.prefixes.nameSpacing
         else
           name
 
@@ -135,35 +136,35 @@ bemModifier("test", "yes") == "test-yes"
         if !!value == value
           modifier if value
         else
-          @bemName [modifier, value]
+          Bemmer.bemName [modifier, value]
 
-      @mapModifiers: (modifiers) ->
-        modifiers = bemObject.modifiers || {}
+      @mapModifiers: (modifiers, blockElement) ->
+        modifiers = modifiers || {}
         classes = []
         for key, value of modifiers
-          m = @bemMOdifier(key, value)
-          classes.push @_compact([blockElement, m]).join(@prefixes.modifier)
+          m = @bemModifier(key, value)
+          classes.push @_compact([blockElement, m]).join(Bemmer.prefixes.modifier)
         classes
-          modifier = modifiers[modifierKey]
-          m = @bemModifier(modifierKey, modifier)
 
-### Deal with a Bem Object -----------------------
+### Deal with a Bem Object
+
       @className: (bemObject) ->
         block = Bemmer.bemName(bemObject.block)
-        element = Bemmer.bemName(bem.element)
+        element = Bemmer.bemName(bemObject.element)
+        classes = []
 
-        blockElement = @_compact([block, element]).join(@prefixes.element)
+        blockElement = Bemmer
+          ._compact([block, element])
+          .join(Bemmer.prefixes.element)
+        classes.push blockElement
 
-        return blockElement unless modifierKeys.length > 0
-
-        classes.unshift blockElement
-        classes.push bemObject
+        classes.concat Bemmer.mapModifiers(bemObject.modifiers, blockElement)
         classes.join ' '
 
 ## Export it
 
     if module || module.exports
-      module.exports = Bemifier
+      module.exports = Bemmer
     else
-      window.Bemifier = Bemifier
+      window.Bemmer = Bemmer
 

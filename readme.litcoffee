@@ -1,4 +1,4 @@
-# Bemifier
+# Bemmer
 
 Class utility to turn your insanely long bem class names into something a
 little more managable.
@@ -10,6 +10,7 @@ This is stupid simple, so don't over-complicate it!
 ### Raw Source
 
 > $ npm build
+
 > $ cp ./build/bemifier.js /path/to/your/project/javascripts/
 
 ### Npm
@@ -61,22 +62,22 @@ These examples are written in coffeescript, but I have written them in a way
 that they more closely resemble plain old javascript.  You can safely ignore
 any arrows ('->'), which just denote functions.
 
-    require './index.litcoffee'
+    Bemmer = require './index.litcoffee'
 
 
 ## Basic Usage
 
     console.log('%cBlue!', 'Basic Usage Example:')
 
-    bem = new Bemifier()
-
-    output = bem.classNames = {
+    bem = new Bemmer({
       block: 'header',
       element: 'title',
       modifiers: {
         'shaded': true
       }
-    }
+    })
+
+    output = bem.classes()
 
 Produces:
 
@@ -87,31 +88,35 @@ Produces:
 
 This works similar to the classes mixin in the React Addons package.
 
-    console.log('%cBlue!', 'Bemifier with React and Coffeescript')
+    if React?
+      console.log('%cBlue!', 'Bemifier with React and Coffeescript')
 
-    div = React.DOM.div
+      div = React.DOM.div
 
-    MyComponent = React.createFactory React.createClass({
-      displayName: 'MyComponent',
+      MyComponent = React.createFactory React.createClass({
+        displayName: 'MyComponent',
 
-      bem: new Bemifier(),
+        bem: new Bemmer({block: 'my-component'}),
 
-      render: ->
-        classes = @bem({
-          block: 'my-component',
-          modifiers: {
-            active: @props.active
-          }
-        })
+        render: ->
+          classes = @bem.with({
+            element: 'container'
+            modifiers: {
+              active: @props.active
+            }
+          })
 
-        return div({classNames: classes}, @props.children)
-    })
+          return div(
+            {classNames: classes},
+            @props.children
+          )
+      })
 
 
 ## Details
 
-Just pass in a series of BEM-like javascript objects.
-Those objects should look something like this:
+Taking inspiration from [bem.info](http://bem.info/), your bem objects will
+look like:
 
     myFirstBemObject = {
       block: 'what-a-blocky-mark',
@@ -121,50 +126,33 @@ Those objects should look something like this:
       }
     }
 
-Should produce something like this:
-
-> "what-a-blocky-mark__the-fifth what-a-blocky-mark__the-fifth--active"
-
     console.log('What does a BEM Object look like?', myFirstBemObject)
 
+### Important differences!!!
 
-Modifiers are just a way of conditionally setting
-parts of a class.  If the value of the key/value
-pair is true, then the key is appended to the end
-of the class.  If you have multiple modifiers,
-this method generates a set of classes.
-
-For example, if I had modifiers for both 'cool'
-and 'awesome', my code/output may look like this:
-
-
-    bemObject = {
-      block: 'my-block',
-      modifiers: {
-        'cool': true,
-        'awesome': true
-      }
-    }
-
-    bemClasses = bem.classNames(bemObject)
-
-Should produce something like this:
-
-> "my-block my-block--cool my-block--awesome"
-
-    console.log('How do more complex modifiers work?', bomObject, bemClasses)
+1. **Blocks don't receive modifiers** - I don't know of a use case where this
+is required in CSS.  To work around this, make a root element in your block,
+and modify that.
+2. **mods -> modifiers** - Being explicit is better than typing less!  It makes
+the code more readable, which means more people can understand what it does
+with less effort.
+3. **Block are inlined** - bem.info's method for allowing blocks to be modified
+is to have both type and mods properties on the block, then nested in contents,
+you just add elements with modifiers.  I think this is convoluted, and
+unnecessary, as addressed in my first point.
 
 ### But I'm using some third party libs, and string concat'ing is gross!
 
 Add some custom css classes as the first parameter:
 
-
-    bemClasses = bem.classNames('btn btn-primary', {
+    bem = new Bemmer({
       block: 'my-custom-button',
       modifiers: {
         'large': true
-      }
+      },
+      classes: 'btn btn-primary'
     })
+    bemClasses = bem.classes()
 
 Should produce something like this:
 

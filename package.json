@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "coffee -r ./index.litcoffee test.coffee",
+    "readme": "coffee readme.litcoffee",
     "build": "coffee -p -c index.litcoffee > ./dist/bemifier.js"
   },
   "author": "Pair Shaped Inc.",
