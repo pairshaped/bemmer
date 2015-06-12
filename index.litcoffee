@@ -17,7 +17,7 @@ but that's not really that important right now.
 
         newArray = []
         for item in arr
-          newArray.push item if item == undefined || item == null
+          newArray.push item unless item == undefined || item == null
         newArray
 
       @prefixes:
@@ -143,19 +143,28 @@ bemModifier("test", "yes") == "test-yes"
         classes = []
         for key, value of modifiers
           m = @bemModifier(key, value)
-          classes.push @_compact([blockElement, m]).join(Bemmer.prefixes.modifier)
+          classes.push @_compact([blockElement, m])
+            .join(Bemmer.prefixes.elementModifier)
         classes
 
 ### Deal with a Bem Object
 
       @className: (bemObject) ->
+        console.log 'Bemmer.className'
         block = Bemmer.bemName(bemObject.block)
         element = Bemmer.bemName(bemObject.element)
+        console.log ' -- block', block
+        console.log ' -- element', element
         classes = []
 
         blockElement = Bemmer
           ._compact([block, element])
-          .join(Bemmer.prefixes.element)
+          .join(Bemmer.prefixes.blockElement)
+
+        console.log ' -- Bemmer prefixes', Bemmer.prefixes
+
+        console.log '-- className.blockElement', blockElement
+
         classes.push blockElement
 
         classes.concat Bemmer.mapModifiers(bemObject.modifiers, blockElement)

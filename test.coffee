@@ -2,21 +2,25 @@
 # Simple Test Method
 #
 #
-Bemifier = require('./index.litcoffee')
+Bemmer = require('./index.litcoffee')
 
 Unit = (test) ->
   console.log 'Testing ', test.it
-  bem = new Bemifier()
   success = false
+  reality = ''
   try
-    console.log bem.classNames, bem.bemName
-    reality = bem.classNames(test.params...)
-    if comparison == reality
-      console.log '  \u2713', "'#{test.comparison}'", '==', "'#{reality}'"
+    bem = new Bemmer(test.param)
+    reality = bem.classes()
+    console.log '>>>>>>>', reality
+    if test.comparison == reality
       success = true
-  catch error
+  catch e
     success = false
-    console.log error
+    console.log e if success != test.expect
+
+  if success == test.expect
+    console.log '  \u2713', "'#{test.comparison}'", '==', "'#{reality}'"
+  else
     console.log '  \u2717', "'#{test.comparison}'", '!=', "'#{reality}'"
 
   return success == test.expect
@@ -27,52 +31,46 @@ Unit = (test) ->
 
 tests = [
   {
-    it: 'produces same-ordered classes with spaces with only text fields'
-    params: ['test foo bar']
-    comparison: 'test foo bar'
-    expect: true
+    it: 'will not produce classes without a block'
+    param: {classes: 'test foo bar'}
+    comparison: undefined
+    expect: false
   }
   {
     it: 'produces same-ordered classes with spaces with only bem fields'
-    params: [
-      {
-        block: 'foo'
-        element: 'bar-baz'
-        modifiers: {
-          'active': true
-        }
+    param: {
+      block: 'foo'
+      element: 'bar-baz'
+      modifiers: {
+        'active': true
       }
-    ]
+    }
     comparison: 'foo__bar-baz foo__bar-baz--active'
     expect: true
   }
   {
     it: 'produces same-ordered classes with spaces with mixed fields'
-    params: [
-      'bar',
-      {
-        block: 'foo'
-        element: 'bar-baz'
-        modifiers: {
-          'active': true
-        }
+    param: {
+      block: 'foo'
+      element: 'bar-baz'
+      modifiers: {
+        'active': true
       }
-    ]
+      classes: 'bar'
+    }
     comparison: 'bar foo__bar-baz foo__bar-baz--active'
     expect: true
   }
   {
     it: 'produces an error when params are wrong'
-    params: [
-      {
-        block: 'foo'
-        element: 'bar-baz'
-        modifiers: {
-          'active': true
-        }
+    param: {
+      block: 'foo'
+      element: 'bar-baz'
+      modifiers: {
+        'active': true
       }
-      'bar'
-    ]
+      classes: 'bar'
+    }
     comparison: 'foo__bar-baz--active bar'
     expect: false
   }
@@ -80,12 +78,16 @@ tests = [
 
 success = 0
 fail = 0
+total = tests.length
 for test in tests
   if Unit(test)
     success++
   else
     fail++
-    break
 
-console.log "#{success} tests passed, #{fail} tests failed"
+remaining = total - (success + fail)
+
+console.log "#{success} test(s) passed",
+  "#{fail} test(s) failed",
+  "#{remaining} test(s) remaining"
 
