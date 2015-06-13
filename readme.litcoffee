@@ -9,13 +9,13 @@ This is stupid simple, so don't over-complicate it!
 
 ### Raw Source
 
-> $ npm build
+> $ npm run build
 
-> $ cp ./build/bemifier.js /path/to/your/project/javascripts/
+> $ cp ./build/bemmer.js /path/to/your/project/javascripts/
 
-### Npm
+### Bower
 
-## TODO: Add npm install support
+> $ bower install bemmer
 
 # Philosophy
 
@@ -53,7 +53,28 @@ Hello World!
 </div>
 ```
 
+In the Javascript world, creating elements with long class names becomes a
+little more unbearable:
 
+```
+myDiv = document.createElement('div')
+myDiv.className = 'my-block my-block--active'
+mySpan = document.createElement('span')
+mySpan.className = 'my-block__my-element my-block__my-element--active'
+myDiv.appendChild(mySpan)
+```
+
+Bem names can get very complicated very quickly, too.  The above example deals
+with only one modifier, but any class could be expected to have any number of
+modifiers, and on top of that, you may have a block that has several elements
+inside which means you will be typing your block name (that is almost certainly
+longer than the string 'my-block') several times, and your element name at
+least that many, too.
+
+Bemmer intends to take a bit of that pain out, using the Don't Repeat Yourself
+(DRY) principle.  Your bem-related code will become more explicit, making it
+easier for other developers to get on board without a full understanding of
+bem.
 
 
 # Examples
