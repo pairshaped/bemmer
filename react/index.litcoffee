@@ -7,6 +7,7 @@ none of them take out the pain of it.  This is our solution to making bem
 slightly more approachable.
 
     Bemmer = require('../index.litcoffee')
+    React = require('react/addons')
 
     ReactBemmer = ReactBemmer || {
 

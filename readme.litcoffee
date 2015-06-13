@@ -90,25 +90,25 @@ Produces:
 
 This works similar to the classes mixin in the React Addons package.
 
-    if ReactBemmer?
-      console.log('%cBlue!', 'Bemifier with React and Coffeescript')
+    ReactBemmer = require('react/index.litcoffee')
+    console.log('%cBlue!', 'Bemifier with React and Coffeescript')
 
-      div = ReactBemmer.DOM.div
+    div = ReactBemmer.DOM.div
 
-      MyComponent = ReactBemmer.createComponent('my-component', {
-        render: ->
-          classes = @bem.with({
-            element: 'container'
-            modifiers: {
-              active: @props.active
-            }
-          })
+    MyComponent = ReactBemmer.createComponent('my-component', {
+      render: ->
+        classes = @bem.with({
+          element: 'container'
+          modifiers: {
+            active: @props.active
+          }
+        })
 
-          return div(
-            {classNames: classes},
-            @props.children
-          )
-      })
+        return div(
+          {classNames: classes},
+          @props.children
+        )
+    })
 
 `ReactBemmer` will take care of setting the `displayName`, and instantiating
 `@bemmer` on your class, which is accessible from any method.  Bemmer will
