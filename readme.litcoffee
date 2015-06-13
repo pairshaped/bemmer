@@ -192,10 +192,6 @@ To run this in your console with node:
 
 `npm run readme`
 
-~~To run this in your browser:
-
-`npm run webapp`~~
-
 # Resources
 
 To learn more about BEM, check out some of these resources:
