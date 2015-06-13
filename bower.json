@@ -4,12 +4,12 @@
   "homepage": "https://github.com/pairshaped/bemmer",
   "authors": [
     "Pair Shaped Inc.",
-    "Alex Barry <mrozbarry@pairshaped.ca>"
+    "Alex Barry <beard@pairshaped.ca>"
   ],
   "description": "Utility class to create BEM class names in Javascript",
   "main": "dist/bemmer.js",
   "keywords": [
-    "bem"
+    "bem", "pairshaped"
   ],
   "license": "BSD-2-Clause",
   "ignore": [
