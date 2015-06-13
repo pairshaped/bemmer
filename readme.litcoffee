@@ -176,7 +176,7 @@ Add some custom css classes as the first parameter:
       modifiers: {
         'large': true
       },
-      classes: 'btn btn-primary'
+      classNames: 'btn btn-primary'
     })
     bemClasses = bem.classes()
 
@@ -192,9 +192,9 @@ To run this in your console with node:
 
 `npm run readme`
 
-To run this in your browser:
+~~To run this in your browser:
 
-`npm run webapp`
+`npm run webapp`~~
 
 # Resources
 
