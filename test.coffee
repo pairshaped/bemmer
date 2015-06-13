@@ -4,6 +4,8 @@
 #
 Bemmer = require('./index.litcoffee')
 
+status = "true": "\u2713 Success", "false": "\u2717 Failed"
+
 Unit = (test) ->
   console.log 'Testing ', test.it
   success = false
@@ -11,17 +13,15 @@ Unit = (test) ->
   try
     bem = new Bemmer(test.param)
     reality = bem.classes()
-    console.log '>>>>>>>', reality
     if test.comparison == reality
       success = true
   catch e
     success = false
-    console.log e if success != test.expect
+    console.log e #if success != test.expect
 
-  if success == test.expect
-    console.log '  \u2713', "'#{test.comparison}'", '==', "'#{reality}'"
-  else
-    console.log '  \u2717', "'#{test.comparison}'", '!=', "'#{reality}'"
+  console.log 'Output:    ', reality
+  console.log 'Should be: ', test.comparison
+  console.log 'Status:    ', status["#{success == test.expect}"]
 
   return success == test.expect
 
@@ -56,7 +56,7 @@ tests = [
       modifiers: {
         'active': true
       }
-      classes: 'bar'
+      classNames: 'bar'
     }
     comparison: 'bar foo__bar-baz foo__bar-baz--active'
     expect: true
@@ -64,14 +64,13 @@ tests = [
   {
     it: 'produces an error when params are wrong'
     param: {
-      block: 'foo'
       element: 'bar-baz'
       modifiers: {
         'active': true
       }
-      classes: 'bar'
+      classNames: 'bar'
     }
-    comparison: 'foo__bar-baz--active bar'
+    comparison: ''
     expect: false
   }
 ]
