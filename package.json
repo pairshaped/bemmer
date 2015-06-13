@@ -1,6 +1,6 @@
 {
   "name": "bemmer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Utility class to create BEM class names in Javascript",
   "main": "dist/bemmer.js",
   "dependencies": {},
@@ -14,7 +14,7 @@
   },
   "authors": [
     "Pair Shaped Inc.",
-    "Alex Barry <mrozbarry@pairshaped.ca"
+    "Alex Barry <mrozbarry@pairshaped.ca>"
   ],
   "license": "BSD-2-Clause"
 }

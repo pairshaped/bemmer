@@ -1,10 +1,10 @@
 {
   "name": "bemmer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/pairshaped/bemmer",
   "authors": [
     "Pair Shaped Inc.",
-    "Alex Barry <mrozbarry@pairshaped.ca"
+    "Alex Barry <mrozbarry@pairshaped.ca>"
   ],
   "description": "Utility class to create BEM class names in Javascript",
   "main": "dist/bemmer.js",
