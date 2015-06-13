@@ -93,7 +93,7 @@
 
   })();
 
-  if (module || module.exports) {
+  if ((typeof module !== "undefined" && module !== null) || (module.exports != null)) {
     module.exports = Bemmer;
   } else {
     window.Bemmer = Bemmer;

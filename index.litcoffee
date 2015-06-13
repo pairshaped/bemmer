@@ -172,7 +172,7 @@ bemModifier("test", "yes") == "test-yes"
 
 ## Export it
 
-    if module || module.exports
+    if module? || module.exports?
       module.exports = Bemmer
     else
       window.Bemmer = Bemmer
