@@ -118,7 +118,7 @@ This works similar to the classes mixin in the React Addons package.
 
     MyComponent = ReactBemmer.createComponent('my-component', {
       render: ->
-        classes = @bem.with({
+        classes = @bemme.with({
           element: 'container'
           modifiers: {
             active: @props.active
