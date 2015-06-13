@@ -86,18 +86,16 @@ Produces:
 
 ## With React and Coffeescript
 
+**Warning:** this module hasn't been tested yet, so it may not even work at all
+
 This works similar to the classes mixin in the React Addons package.
 
-    if React?
+    if ReactBemmer?
       console.log('%cBlue!', 'Bemifier with React and Coffeescript')
 
-      div = React.DOM.div
+      div = ReactBemmer.DOM.div
 
-      MyComponent = React.createFactory React.createClass({
-        displayName: 'MyComponent',
-
-        bem: new Bemmer({block: 'my-component'}),
-
+      MyComponent = ReactBemmer.createComponent('my-component', {
         render: ->
           classes = @bem.with({
             element: 'container'
@@ -112,6 +110,13 @@ This works similar to the classes mixin in the React Addons package.
           )
       })
 
+`ReactBemmer` will take care of setting the `displayName`, and instantiating
+`@bemmer` on your class, which is accessible from any method.  Bemmer will
+assume your component name is also your block.  If this is not the desired
+behaviour, although I would highly suggest it means you are going against the
+grain, you can override the block name in componentWillMount like this:
+
+> @bemmer = new Bemmer({block: 'whatever'})
 
 ## Details
 
@@ -133,10 +138,10 @@ look like:
 1. **Blocks don't receive modifiers** - I don't know of a use case where this
 is required in CSS.  To work around this, make a root element in your block,
 and modify that.
-2. **mods -> modifiers** - Being explicit is better than typing less!  It makes
-the code more readable, which means more people can understand what it does
-with less effort.
-3. **Block are inlined** - bem.info's method for allowing blocks to be modified
+2. **mods renamed modifiers for elements** - Being explicit is better than
+typing less!  It makes the code more readable, which means more people can
+understand what it does with less effort.
+3. **Blocks are inlined** - bem.info's method for allowing blocks to be modified
 is to have both type and mods properties on the block, then nested in contents,
 you just add elements with modifiers.  I think this is convoluted, and
 unnecessary, as addressed in my first point.
@@ -181,3 +186,4 @@ using bem.info's JSON notation for components.
 css classes.
  * [bemify](https://github.com/franzheidl/bemify) is a set of Sass mixins to
 write well structured Sass with BEM.
+
