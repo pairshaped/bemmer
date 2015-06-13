@@ -1,4 +1,4 @@
-# Bemifier
+# Bemmer
 
 Class utility to turn your insanely long bem class names into something a
 little more managable.

@@ -1,8 +1,8 @@
 {
-  "name": "react-bem-mixin",
+  "name": "bemmer",
   "version": "0.0.1",
-  "description": "BEM Mixin for React (Or Whatever)",
-  "main": "dist/bemifier.js",
+  "description": "Utility class to create BEM class names in Javascript",
+  "main": "dist/bemmer.js",
   "dependencies": {},
   "devDependencies": {
     "coffee-script": "~1.9.3"
@@ -10,8 +10,11 @@
   "scripts": {
     "test": "coffee -r ./index.litcoffee test.coffee",
     "readme": "coffee readme.litcoffee",
-    "build": "coffee -p -c index.litcoffee > ./dist/bemifier.js"
+    "build": "coffee -p -c index.litcoffee > ./dist/bemmer.js"
   },
-  "author": "Pair Shaped Inc.",
+  "authors": [
+    "Pair Shaped Inc.",
+    "Alex Barry <mrozbarry@pairshaped.ca"
+  ],
   "license": "BSD-2-Clause"
 }

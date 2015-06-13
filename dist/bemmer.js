@@ -5,13 +5,10 @@
   Bemmer = (function() {
     Bemmer._compact = function(arr) {
       var i, item, len, newArray;
-      if (_ && _.compact) {
-        _.compact(arr);
-      }
       newArray = [];
       for (i = 0, len = arr.length; i < len; i++) {
         item = arr[i];
-        if (item === void 0 || item === null) {
+        if (!(item === void 0 || item === null)) {
           newArray.push(item);
         }
       }
@@ -32,7 +29,7 @@
     }
 
     Bemmer.prototype.classes = function() {
-      return Bemmer.className(this.bemObject);
+      return Bemmer.className(this.bemHash);
     };
 
     Bemmer.prototype.elementFromBlock = function(bemObject) {
@@ -64,28 +61,31 @@
       }
     };
 
-    Bemmer.mapModifiers = function(modifiers) {
+    Bemmer.mapModifiers = function(modifiers, blockElement) {
       var classes, key, m, value;
       modifiers = modifiers || {};
       classes = [];
       for (key in modifiers) {
         value = modifiers[key];
         m = this.bemModifier(key, value);
-        classes.push(this._compact([blockElement, m]).join(Bemmer.prefixes.modifier));
+        classes.push(this._compact([blockElement, m])).join(Bemmer.prefixes.elementModifier);
       }
       return classes;
     };
 
     Bemmer.className = function(bemObject) {
-      var block, blockElement, element;
+      var block, blockElement, classes, element;
+      console.log('Bemmer.className');
       block = Bemmer.bemName(bemObject.block);
-      element = Bemmer.bemName(bem.element);
-      blockElement = Bemmer._compact([block, element]).join(Bemmer.prefixes.element);
-      if (!(modifierKeys.length > 0)) {
-        return blockElement;
-      }
-      classes.unshift(blockElement);
-      classes.push(bemObject);
+      element = Bemmer.bemName(bemObject.element);
+      console.log(' -- block', block);
+      console.log(' -- element', element);
+      classes = [];
+      blockElement = Bemmer._compact([block, element]).join(Bemmer.prefixes.blockElement);
+      console.log(' -- Bemmer prefixes', Bemmer.prefixes);
+      console.log('-- className.blockElement', blockElement);
+      classes.push(blockElement);
+      classes.concat(Bemmer.mapModifiers(bemObject.modifiers, blockElement));
       return classes.join(' ');
     };
 

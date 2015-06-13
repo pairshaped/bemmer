@@ -1,0 +1,22 @@
+{
+  "name": "bemmer",
+  "version": "0.0.1",
+  "homepage": "https://github.com/pairshaped/bemmer",
+  "authors": [
+    "Pair Shaped Inc.",
+    "Alex Barry <mrozbarry@pairshaped.ca"
+  ],
+  "description": "Utility class to create BEM class names in Javascript",
+  "main": "dist/bemmer.js",
+  "keywords": [
+    "bem"
+  ],
+  "license": "BSD-2-Clause",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
