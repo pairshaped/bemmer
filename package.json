@@ -1,6 +1,6 @@
 {
   "name": "bemmer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utility class to create BEM class names in Javascript",
   "main": "dist/bemmer.js",
   "dependencies": {},
