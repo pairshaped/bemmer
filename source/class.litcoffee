@@ -25,12 +25,12 @@ but that's not really that important right now.
         elementModifier: '--'
         nameSpacing: '-'
 
-## Create a new Bemifier
+## Create a new Bemmer object
 
       constructor: (@bemHash) ->
         unless @bemHash.block
           throw new Error(
-            "Bemifier requires a block to create a class"
+            "Bemmer needs an object with a 'block' key to make css classes."
           )
 
 There is no magic or behind the scenes illusion here.  You may
@@ -62,12 +62,10 @@ cls (other class names):
         bemObject.block = @bemObject.block
         new Bemmer(bmObject)
 
-`with` is shorthand for using `elementFromBlock()` and `className()` and should
+`with` is shorthand for using `elementFromBlock()` and `classes()` and should
 be used in cases where the bem block/element/modifiers are one-time use.
 
-      with: (bemObject) ->
-        @elementFromBlock(bemObject)
-          .className()
+      with: (bemObject) -> @elementFromBlock(bemObject).classes()
 
 Just pass in a series of BEM-like javascript objects.
 Those objects should look something like this:
