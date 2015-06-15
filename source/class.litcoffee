@@ -13,7 +13,7 @@ This is stupid simple, so don't over-complicate it!
 but that's not really that important right now.
 
       @_compact: (arr) ->
-        #_.compact(arr) if _ && _.compact
+        return _.compact(arr) if typeof _ == 'function' && _
 
         newArray = []
         for item in arr
