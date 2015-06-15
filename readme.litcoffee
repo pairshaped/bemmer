@@ -36,17 +36,17 @@ look like this:
     background-color: red;
   }
 
-  .my-block__my-element {
+> .my-block__my-element {
     font-size: 16pt;
     font-weight: bold;
     color: white;
   }
 
-  .my-block--active {
+> .my-block--active {
     background-color: white;
   }
 
-  .my-block__my-element--active {
+> .my-block__my-element--active {
     color: red;
   }
 
