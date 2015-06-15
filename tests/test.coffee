@@ -19,9 +19,10 @@ Unit = (test) ->
     success = false
     console.log e #if success != test.expect
 
-  console.log 'Output:    ', reality
-  console.log 'Should be: ', test.comparison
-  console.log 'Status:    ', status["#{success == test.expect}"]
+  console.log '  Output:    ', reality
+  console.log '  Should be: ', test.comparison
+  console.log '  Status:    ', status["#{success == test.expect}"]
+  console.log ''
 
   return success == test.expect
 
