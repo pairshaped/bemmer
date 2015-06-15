@@ -2,7 +2,12 @@
   "name": "bemmer",
   "version": "0.0.3",
   "description": "Utility class to create BEM class names in Javascript",
-  "main": "dist/bemmer.js",
+  "files": [
+    "bemmer.js",
+    "bemmerClass.js",
+    "react/reactBemmer.js"
+  ],
+  "main": "bemmer.js",
   "dependencies": {},
   "devDependencies": {
     "coffee-script": "~1.9.3"
@@ -10,7 +15,7 @@
   "scripts": {
     "test": "coffee -r ./index.litcoffee test.coffee",
     "readme": "coffee readme.litcoffee",
-    "build": "coffee -p -c index.litcoffee > ./dist/bemmer.js"
+    "build": "./build.sh"
   },
   "authors": [
     "Pair Shaped Inc.",

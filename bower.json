@@ -7,7 +7,11 @@
     "Alex Barry <beard@pairshaped.ca>"
   ],
   "description": "Utility class to create BEM class names in Javascript",
-  "main": "dist/bemmer.js",
+  "main": [
+    "bemmer.js",
+    "bemmerClass.js",
+    "react/reactBemmer.js"
+  ],
   "keywords": [
     "bem", "pairshaped"
   ],

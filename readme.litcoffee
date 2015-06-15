@@ -5,13 +5,20 @@ little more managable.
 
 This is stupid simple, so don't over-complicate it!
 
+## More documentation
+
+This readme should cover most of the nuances and basics, but for more good
+reading, check out the litcoffee sources:
+
+  * source/bemmer.litcoffee
+  * source/class.litcoffee
+  * source/react/index.litcoffee
+
 ## Including in your project
 
 ### Raw Source
 
-> $ npm run build
-
-> $ cp ./build/bemmer.js /path/to/your/project/javascripts/
+> $ cp ./bemmer.js /path/to/your/project/javascripts/
 
 ### Bower
 
@@ -83,7 +90,7 @@ These examples are written in coffeescript, but I have written them in a way
 that they more closely resemble plain old javascript.  You can safely ignore
 any arrows ('->'), which just denote functions.
 
-    Bemmer = require './index.litcoffee'
+    Bemmer = require 'bemmerClass'
 
 
 ## Basic Usage
@@ -111,7 +118,7 @@ Produces:
 
 This works similar to the classes mixin in the React Addons package.
 
-    ReactBemmer = require('react/index.litcoffee')
+    ReactBemmer = require('bemmer/reactBemmer')
     console.log('%cBlue!', 'Bemifier with React and Coffeescript')
 
     div = ReactBemmer.DOM.div
