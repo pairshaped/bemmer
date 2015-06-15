@@ -1,6 +1,6 @@
 {
   "name": "bemmer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/pairshaped/bemmer",
   "authors": [
     "Pair Shaped Inc.",
@@ -8,9 +8,9 @@
   ],
   "description": "Utility class to create BEM class names in Javascript",
   "main": [
-    "bemmer.js",
-    "bemmerClass.js",
-    "react/reactBemmer.js"
+    "bemmer/bemmer.js",
+    "bemmer/class.js",
+    "bemmer/react/reactBemmer.js"
   ],
   "keywords": [
     "bem", "pairshaped"

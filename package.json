@@ -1,13 +1,17 @@
 {
   "name": "bemmer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Utility class to create BEM class names in Javascript",
   "files": [
-    "bemmer.js",
-    "bemmerClass.js",
-    "react/reactBemmer.js"
+    "bemmer/bemmer.js",
+    "bemmer/class.js",
+    "bemmer/react/reactBemmer.js"
   ],
-  "main": "bemmer.js",
+  "main": [
+    "bemmer/bemmer.js",
+    "bemmer/class.js",
+    "bemmer/react/reactBemmer.js"
+  ],
   "dependencies": {},
   "devDependencies": {
     "coffee-script": "~1.9.3"
