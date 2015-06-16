@@ -8,9 +8,7 @@
   ],
   "description": "Utility class to create BEM class names in Javascript",
   "main": [
-    "bemmer/bemmer.js",
-    "bemmer/class.js",
-    "bemmer/react/reactBemmer.js"
+    "bemmer.js"
   ],
   "keywords": [
     "bem", "pairshaped"
@@ -21,6 +19,9 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "source",
+    "*.litcoffee",
+    "build.sh"
   ]
 }
