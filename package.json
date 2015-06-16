@@ -1,16 +1,16 @@
 {
   "name": "bemmer",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Utility class to create BEM class names in Javascript",
   "files": [
-    "bemmer/bemmer.js",
-    "bemmer/class.js",
-    "bemmer/react/reactBemmer.js"
+    "bemmer.js",
+    "class.js",
+    "react/reactBemmer.js"
   ],
   "main": [
-    "bemmer/bemmer.js",
-    "bemmer/class.js",
-    "bemmer/react/reactBemmer.js"
+    "bemmer.js",
+    "class.js",
+    "react/reactBemmer.js"
   ],
   "dependencies": {},
   "devDependencies": {
