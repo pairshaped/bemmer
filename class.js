@@ -5,6 +5,9 @@
   Bemmer = (function() {
     Bemmer._compact = function(arr) {
       var i, item, len, newArray;
+      if (typeof _ === 'function' && _) {
+        return _.compact(arr);
+      }
       newArray = [];
       for (i = 0, len = arr.length; i < len; i++) {
         item = arr[i];
@@ -24,7 +27,7 @@
     function Bemmer(bemHash) {
       this.bemHash = bemHash;
       if (!this.bemHash.block) {
-        throw new Error("Bemifier requires a block to create a class");
+        throw new Error("Bemmer needs an object with a 'block' key to make css classes.");
       }
     }
 
@@ -40,7 +43,7 @@
     };
 
     Bemmer.prototype["with"] = function(bemObject) {
-      return this.elementFromBlock(bemObject).className();
+      return this.elementFromBlock(bemObject).classes();
     };
 
     Bemmer.bemName = function(name) {
