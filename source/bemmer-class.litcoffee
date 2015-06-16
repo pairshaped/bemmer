@@ -167,11 +167,6 @@ bemModifier("test", "yes") == "test-yes"
 
 ## Export it
 
-    if module? || module.exports?
-      module.exports = Bemmer
-    else
-      window.Bemmer = Bemmer
-
     if typeof define == 'function' && typeof define.amd == 'object' && define.amd
       define -> Bemmer
     else if typeof module != 'undefined' && module.exports

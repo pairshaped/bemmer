@@ -4,7 +4,6 @@ Less typing with expected results.
 
 > bemmer({block: 'my-block', element: 'my-element'})
 
-    Bemmer = require('bemmer/class')
     bemmer = (bemObject) -> Bemmer.classNames(bemObject)
 
 ## Export it

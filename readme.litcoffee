@@ -24,6 +24,10 @@ reading, check out the litcoffee sources:
 
 > $ bower install bemmer
 
+### Npm
+
+> $ npm install bemmer
+
 # Philosophy
 
 Bem classes are named using blocks, elements, modifiers.  When creating classes,
@@ -90,8 +94,15 @@ These examples are written in coffeescript, but I have written them in a way
 that they more closely resemble plain old javascript.  You can safely ignore
 any arrows ('->'), which just denote functions.
 
-    Bemmer = require 'bemmerClass'
+## With Npm
 
+Since you'll be running this from inside the repository, the requires would
+have to be relative, which isn't what it would look like in production code.
+Instead, it's in a no-op block just so you can see how it looks.
+
+    unless true
+      bemmer = require('bemmer') # Export the wrapper function
+      Bemmer = require('bemmer/bemmer-class') # Export the class
 
 ## Basic Usage
 
@@ -118,7 +129,7 @@ Produces:
 
 This works similar to the classes mixin in the React Addons package.
 
-    ReactBemmer = require('bemmer/reactBemmer')
+    ReactBemmer = require('bemmer/react/react-bemmer')
     console.log('%cBlue!', 'Bemifier with React and Coffeescript')
 
     div = ReactBemmer.DOM.div
