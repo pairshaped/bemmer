@@ -60,7 +60,7 @@ cls (other class names):
       elementFromBlock: (bemObject) ->
         object = bemObject
         bemObject.block = @bemHash.block
-        new Bemmer(bmObject)
+        new Bemmer(bemObject)
 
 `with` is shorthand for using `elementFromBlock()` and `classes()` and should
 be used in cases where the bem block/element/modifiers are one-time use.

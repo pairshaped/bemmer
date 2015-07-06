@@ -1,6 +1,6 @@
 {
   "name": "bemmer-node",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Utility class to create BEM class names in Javascript",
   "repository": "https://github.com/pairshaped/bemmer.git",
   "files": [
