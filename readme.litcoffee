@@ -26,7 +26,12 @@ reading, check out the litcoffee sources:
 
 ### Npm
 
-> $ npm install bemmer
+> $ npm install bemmer-node
+
+*Note:* Apparently `bemmer` was already taken on the npm registry, so we have
+sided with the name `bemmer-node` until we either rename altogether or the
+name becomes available.  We were unaware of this project previously, and
+only came across it when we went to register it with npm.
 
 # Philosophy
 
@@ -101,8 +106,8 @@ have to be relative, which isn't what it would look like in production code.
 Instead, it's in a no-op block just so you can see how it looks.
 
     unless true
-      bemmer = require('bemmer') # Export the wrapper function
-      Bemmer = require('bemmer/bemmer-class') # Export the class
+      bemmer = require('bemmer-node') # Export the wrapper function
+      Bemmer = require('bemmer-node/bemmer-class') # Export the class
 
 ## Basic Usage
 
@@ -129,7 +134,7 @@ Produces:
 
 This works similar to the classes mixin in the React Addons package.
 
-    ReactBemmer = require('bemmer/react/react-bemmer')
+    ReactBemmer = require('bemmer-node/react/react-bemmer')
     console.log('%cBlue!', 'Bemifier with React and Coffeescript')
 
     div = ReactBemmer.DOM.div

@@ -1,5 +1,5 @@
 {
-  "name": "bemmer",
+  "name": "bemmer-node",
   "version": "0.0.9",
   "description": "Utility class to create BEM class names in Javascript",
   "files": [
