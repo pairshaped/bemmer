@@ -1,6 +1,6 @@
 {
   "name": "bemmer-node",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Utility class to create BEM class names in Javascript",
   "files": [
     "bemmer.js",
@@ -20,8 +20,8 @@
     "gulp-sourcemaps": "^1.5.2"
   },
   "scripts": {
-    "test": "coffee -r source/class.litcoffee tests/test.coffee",
-    "readme": "coffee -r source/bemmer-class.litcoffee readme.litcoffee",
+    "test": "coffee tests/test.coffee",
+    "readme": "coffee readme.litcoffee",
     "build": "gulp"
   },
   "authors": [

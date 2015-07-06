@@ -105,9 +105,10 @@ Since you'll be running this from inside the repository, the requires would
 have to be relative, which isn't what it would look like in production code.
 Instead, it's in a no-op block just so you can see how it looks.
 
-    unless true
-      bemmer = require('bemmer-node') # Export the wrapper function
-      Bemmer = require('bemmer-node/bemmer-class') # Export the class
+>  bemmer = require('bemmer-node') # Export the wrapper function
+Bemmer = require('bemmer-node/bemmer-class') # Export the class
+
+    Bemmer = require('./bemmer-class')
 
 ## Basic Usage
 
@@ -134,7 +135,7 @@ Produces:
 
 This works similar to the classes mixin in the React Addons package.
 
-    ReactBemmer = require('bemmer-node/react/react-bemmer')
+    ReactBemmer = require('./react/react-bemmer')
     console.log('%cBlue!', 'Bemifier with React and Coffeescript')
 
     div = ReactBemmer.DOM.div

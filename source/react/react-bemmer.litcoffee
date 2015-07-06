@@ -6,7 +6,7 @@ There have been a few solutions in React to capture BEM css conventions, but
 none of them take out the pain of it.  This is our solution to making bem
 slightly more approachable.
 
-    Bemmer = require('../index.litcoffee')
+    Bemmer = require('../bemmer-class')
     React = require('react/addons')
 
     ReactBemmer = ReactBemmer || {
@@ -16,7 +16,7 @@ right now.
 
       _wrapper: (element) ->
         (specs, children) ->
-          specs.classNames Bemmer.classNames(specs.bem) if specs.bem
+          specs.classNames = Bemmer.classNames(specs.bem) if specs.bem
           element(specs, children)
 
 # DOM Elements
@@ -40,7 +40,7 @@ your className property
 
       createClass: (componentName, specs) ->
         specs.displayName = componentName
-        specs.bemmer = new Bemmer(componentName)
+        specs.bemmer = new Bemmer(block: componentName)
         React.createClass(specs)
 
       createComponent: (componentName, specs) ->

@@ -1,6 +1,6 @@
 var Bemmer, React, ReactBemmer;
 
-Bemmer = require('../index.litcoffee');
+Bemmer = require('../bemmer-class');
 
 React = require('react/addons');
 
@@ -8,7 +8,7 @@ ReactBemmer = ReactBemmer || {
   _wrapper: function(element) {
     return function(specs, children) {
       if (specs.bem) {
-        specs.classNames(Bemmer.classNames(specs.bem));
+        specs.classNames = Bemmer.classNames(specs.bem);
       }
       return element(specs, children);
     };
@@ -16,7 +16,9 @@ ReactBemmer = ReactBemmer || {
   DOM: React.DOM.map(this._wrapper),
   createClass: function(componentName, specs) {
     specs.displayName = componentName;
-    specs.bemmer = new Bemmer(componentName);
+    specs.bemmer = new Bemmer({
+      block: componentName
+    });
     return React.createClass(specs);
   },
   createComponent: function(componentName, specs) {

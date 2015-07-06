@@ -9,7 +9,7 @@ if (typeof define === 'function' && typeof define.amd === 'object' && define.amd
     return bemmer;
   });
 } else if (typeof module !== 'undefined' && module.exports) {
-  module.exports.bemmer = bemmer;
+  module.exports = bemmer;
 } else {
   window.bemmer = bemmer;
 }
