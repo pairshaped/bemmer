@@ -2,7 +2,10 @@
 # Simple Test Method
 #
 #
-Bemmer = require('../bemmerClass')
+Bemmer = require('../bemmer-class')
+
+
+console.log 'Bemmer=', Bemmer
 
 status = "true": "\u2713 Success", "false": "\u2717 Failed"
 
@@ -19,6 +22,7 @@ Unit = (test) ->
     success = false
     console.log e #if success != test.expect
 
+  console.log '  Calling new Bemmer(', test.param, ')'
   console.log '  Output:    ', reality
   console.log '  Should be: ', test.comparison
   console.log '  Status:    ', status["#{success == test.expect}"]

@@ -170,7 +170,7 @@ bemModifier("test", "yes") == "test-yes"
     if typeof define == 'function' && typeof define.amd == 'object' && define.amd
       define -> Bemmer
     else if typeof module != 'undefined' && module.exports
-      module.exports.Bemmer = Bemmer
+      module.exports = Bemmer
     else
       window.Bemmer = Bemmer
 
