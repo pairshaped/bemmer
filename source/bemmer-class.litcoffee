@@ -59,7 +59,7 @@ cls (other class names):
 
       elementFromBlock: (bemObject) ->
         object = bemObject
-        bemObject.block = @bemObject.block
+        bemObject.block = @bemHash.block
         new Bemmer(bmObject)
 
 `with` is shorthand for using `elementFromBlock()` and `classes()` and should

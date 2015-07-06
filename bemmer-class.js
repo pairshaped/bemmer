@@ -36,7 +36,7 @@ Bemmer = (function() {
   Bemmer.prototype.elementFromBlock = function(bemObject) {
     var object;
     object = bemObject;
-    bemObject.block = this.bemObject.block;
+    bemObject.block = this.bemHash.block;
     return new Bemmer(bmObject);
   };
 
