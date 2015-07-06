@@ -10,7 +10,9 @@
   "main": [
     "bemmer.js"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "react": "~0.13.0"
+  },
   "devDependencies": {
     "coffee-script": "~1.9.3",
     "grunt": "^0.4.5",
