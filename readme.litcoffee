@@ -14,6 +14,8 @@ reading, check out the litcoffee sources:
   * source/class.litcoffee
   * source/react/index.litcoffee
 
+Also check out the [Trello Board](https://trello.com/b/5W6BE4Wq/bemmer-node)
+
 ## Including in your project
 
 ### Raw Source
