@@ -1,29 +1,29 @@
 {
   "name": "bemmer-node",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Utility class to create BEM class names in Javascript",
   "repository": "https://github.com/pairshaped/bemmer.git",
   "files": [
-    "bemmer.js",
-    "bemmer-class.js",
-    "react/react-bemmer.js"
-  ],
-  "main": [
     "bemmer.js"
   ],
-  "dependencies": {
-    "react": "~0.13.0"
-  },
+  "main": "bemmer.js",
+  "dependencies": {},
   "devDependencies": {
     "coffee-script": "~1.9.3",
     "grunt": "^0.4.5",
     "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
     "gulp-coffee": "^2.3.1",
     "gulp-concat": "^2.5.2",
-    "gulp-sourcemaps": "^1.5.2"
+    "gulp-jasmine": "^2.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-watch": "^4.3.5",
+    "jasmine": "^2.3.2",
+    "jasmine-collection-matchers": "git://github.com/mrozbarry/jasmine-collection-matchers.git#change-package-main-to-precompiled-pack",
+    "jasmine-core": "^2.3.4"
   },
   "scripts": {
-    "test": "coffee tests/test.coffee",
+    "test": "jasmine-node --coffee ./spec",
     "readme": "coffee readme.litcoffee",
     "build": "gulp"
   },

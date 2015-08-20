@@ -1,6 +1,6 @@
 {
   "name": "bemmer",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/pairshaped/bemmer",
   "authors": [
     "Pair Shaped Inc.",
@@ -18,10 +18,8 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests",
+    "spec",
     "source",
-    "*.litcoffee",
-    "build.sh"
+    "*.litcoffee"
   ]
 }

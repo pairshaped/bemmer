@@ -1,12 +1,30 @@
 var gulp        = require('gulp'),
-    coffee      = require('gulp-coffee');
+    watch       = require('gulp-watch'),
+    coffee      = require('gulp-coffee'),
+    clean       = require('gulp-clean'),
+    jasmine     = require('gulp-jasmine');
 
-function compileLitCoffee(chain, dest) {
-  return chain.pipe(coffee({bare: true}))
-    .pipe(gulp.dest(dest));
-}
+gulp.task('test', ['compile'], function() {
+  require('coffee-script/register');
 
-gulp.task('default', function() {
-  compileLitCoffee(gulp.src(['source/bemmer-class.litcoffee', 'source/bemmer.litcoffee']), './')
-  compileLitCoffee(gulp.src('source/react/react-bemmer.litcoffee'), './react')
-})
+  return gulp.src('spec/*.coffee')
+    .pipe(jasmine())
+});
+
+gulp.task('compile', ['clean'], function() {
+  return gulp.src('source/bemmer.litcoffee')
+    .pipe(coffee({bare: true}))
+    .pipe(gulp.dest('./'))
+});
+
+gulp.task('clean', function() {
+  return gulp.src('bemmer.js', {read: false}).pipe(clean({ force: true }))
+});
+
+gulp.task('watch', function() {
+  return watch('source/*.litcoffee').pipe(function() {
+    gulp.start('test');
+  })
+});
+
+gulp.task('default', ['test']);
